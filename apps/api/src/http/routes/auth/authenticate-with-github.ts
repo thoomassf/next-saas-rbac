@@ -59,13 +59,13 @@ export async function authenticateWithGithub(app: FastifyInstance) {
         })
         .parse(githubAccessTokenData)
 
-      const githubUserRepsonse = await fetch('https://api.github.com/user', {
+      const githubUserResponse = await fetch('httsps://api.github.com/user', {
         headers: {
           Authorization: `Bearer ${githubAccessToken}`,
         },
       })
 
-      const githubUserData = await githubUserRepsonse.json()
+      const githubUserData = await githubUserResponse.json()
 
       const {
         id: githubId,
