@@ -13,8 +13,8 @@ async function seed() {
   const user = await prisma.user.create({
     data: {
       name: 'John Doe',
-      email: 'john@doe.com',
-      avatarUrl: 'https://github.com/thoomassf.png',
+      email: 'john@acme.com',
+      avatarUrl: 'https://github.com/diego3g.png',
       passwordHash,
     },
   })
@@ -43,7 +43,7 @@ async function seed() {
       domain: 'acme.com',
       slug: 'acme-admin',
       avatarUrl: faker.image.avatarGitHub(),
-      shouldAttachUserByDomain: true,
+      shouldAttachUsersByDomain: true,
       ownerId: user.id,
       projects: {
         createMany: {
@@ -94,72 +94,6 @@ async function seed() {
             {
               userId: anotherUser.id,
               role: 'MEMBER',
-            },
-            {
-              userId: anotherUser2.id,
-              role: 'MEMBER',
-            },
-          ],
-        },
-      },
-    },
-  })
-
-  await prisma.organization.create({
-    data: {
-      name: 'Acme Inc (Member)',
-      slug: 'acme-member',
-      avatarUrl: faker.image.avatarGitHub(),
-      ownerId: user.id,
-      projects: {
-        createMany: {
-          data: [
-            {
-              name: faker.lorem.words(5),
-              slug: faker.lorem.slug(5),
-              description: faker.lorem.paragraph(),
-              avatarUrl: faker.image.avatarGitHub(),
-              ownerId: faker.helpers.arrayElement([
-                user.id,
-                anotherUser.id,
-                anotherUser2.id,
-              ]),
-            },
-            {
-              name: faker.lorem.words(5),
-              slug: faker.lorem.slug(5),
-              description: faker.lorem.paragraph(),
-              avatarUrl: faker.image.avatarGitHub(),
-              ownerId: faker.helpers.arrayElement([
-                user.id,
-                anotherUser.id,
-                anotherUser2.id,
-              ]),
-            },
-            {
-              name: faker.lorem.words(5),
-              slug: faker.lorem.slug(5),
-              description: faker.lorem.paragraph(),
-              avatarUrl: faker.image.avatarGitHub(),
-              ownerId: faker.helpers.arrayElement([
-                user.id,
-                anotherUser.id,
-                anotherUser2.id,
-              ]),
-            },
-          ],
-        },
-      },
-      members: {
-        createMany: {
-          data: [
-            {
-              userId: user.id,
-              role: 'MEMBER',
-            },
-            {
-              userId: anotherUser.id,
-              role: 'ADMIN',
             },
             {
               userId: anotherUser2.id,
@@ -222,6 +156,72 @@ async function seed() {
             {
               userId: user.id,
               role: 'BILLING',
+            },
+            {
+              userId: anotherUser.id,
+              role: 'ADMIN',
+            },
+            {
+              userId: anotherUser2.id,
+              role: 'MEMBER',
+            },
+          ],
+        },
+      },
+    },
+  })
+
+  await prisma.organization.create({
+    data: {
+      name: 'Acme Inc (Member)',
+      slug: 'acme-member',
+      avatarUrl: faker.image.avatarGitHub(),
+      ownerId: user.id,
+      projects: {
+        createMany: {
+          data: [
+            {
+              name: faker.lorem.words(5),
+              slug: faker.lorem.slug(5),
+              description: faker.lorem.paragraph(),
+              avatarUrl: faker.image.avatarGitHub(),
+              ownerId: faker.helpers.arrayElement([
+                user.id,
+                anotherUser.id,
+                anotherUser2.id,
+              ]),
+            },
+            {
+              name: faker.lorem.words(5),
+              slug: faker.lorem.slug(5),
+              description: faker.lorem.paragraph(),
+              avatarUrl: faker.image.avatarGitHub(),
+              ownerId: faker.helpers.arrayElement([
+                user.id,
+                anotherUser.id,
+                anotherUser2.id,
+              ]),
+            },
+            {
+              name: faker.lorem.words(5),
+              slug: faker.lorem.slug(5),
+              description: faker.lorem.paragraph(),
+              avatarUrl: faker.image.avatarGitHub(),
+              ownerId: faker.helpers.arrayElement([
+                user.id,
+                anotherUser.id,
+                anotherUser2.id,
+              ]),
+            },
+          ],
+        },
+      },
+      members: {
+        createMany: {
+          data: [
+            {
+              userId: user.id,
+              role: 'MEMBER',
             },
             {
               userId: anotherUser.id,
