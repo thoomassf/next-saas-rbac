@@ -13,7 +13,9 @@ export const env = createEnv({
     GIT_OAUTH_CLIENT_REDIRECT_URI: z.string(),
   },
   client: {},
-  shared: {},
+  shared: {
+    NEXT_PUBLIC_API_URL: z.string().url(),
+  },
   runtimeEnv: {
     SERVER_PORT: process.env.SERVER_PORT,
     DATABASE_URL: process.env.DATABASE_URL,
@@ -21,6 +23,7 @@ export const env = createEnv({
     GIT_OAUTH_CLIENT_ID: process.env.GIT_OAUTH_CLIENT_ID,
     GIT_OAUTH_CLIENT_SECRET: process.env.GIT_OAUTH_CLIENT_SECRET,
     GIT_OAUTH_CLIENT_REDIRECT_URI: process.env.GIT_OAUTH_CLIENT_REDIRECT_URI,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
   emptyStringAsUndefined: true,
 })
